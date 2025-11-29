@@ -1,0 +1,179 @@
+:root{
+  --bg:#FFF7E6;
+  --card:#FFF;
+  --accent:#FFCC2A;
+  --muted:#6b6b6b;
+  --green:#3CB371;
+  --danger:#FF6B6B;
+  --shadow:0 6px 18px rgba(0,0,0,0.08);
+  --round:16px;
+  font-family:"Noto Kufi Arabic","Segoe UI",Tahoma,sans-serif;
+}
+
+/* عام */
+html,body{
+  margin:0;
+  padding:0;
+  height:100%;
+  background:linear-gradient(180deg,#E8F5FF 0%,#FFF7E6 100%);
+  color:#111;
+}
+.app{
+  max-width:420px;
+  margin:16px auto;
+  padding:16px;
+}
+
+/* هيدر */
+header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--card);
+  padding:16px;
+  border-radius:20px;
+  box-shadow:var(--shadow);
+}
+
+.mascot{
+  width:86px;
+  height:86px;
+  border-radius:14px;
+  background:linear-gradient(180deg,#FFE8B3,#FFD166);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  position:relative;
+}
+
+.mascot svg{ width:78%; height:78%; }
+
+header h1{ font-size:20px; line-height:1.3; margin:0; }
+header .sub{ margin:4px 0 0; color:var(--muted); font-size:14px; }
+
+.buttons{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+
+/* أزرار */
+.btn{
+  background:var(--accent);
+  border:none;
+  padding:12px 16px;
+  border-radius:14px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 6px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover{
+  transform: translateY(-2px);
+  box-shadow:0 12px 20px rgba(0,0,0,0.12);
+}
+
+.btn.secondary{
+  background:#fff;
+  border:2px solid #FFD66B;
+  color:#333;
+}
+
+/* عام للـmain والبطاقات */
+main{ margin-top:14px; }
+.card{
+  background:var(--card);
+  padding:16px;
+  border-radius:var(--round);
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
+
+.inner-card{ background:#FFF8F1; padding:12px 16px; }
+
+label{ display:block; font-weight:700; margin-bottom:6px; }
+input[type="text"], input[type="number"], select, input[type="date"]{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #eee;
+  font-size:15px;
+  box-sizing:border-box;
+}
+
+.row{ display:flex; gap:8px; }
+.small{ flex:1; }
+.small-select{ width:120px; }
+
+/* قوائم المصاريف */
+.list-item{
+  display:flex;
+  justify-content:space-between;
+  padding:12px;
+  border-radius:14px;
+  margin-bottom:8px;
+  background:#FFF8E6;
+  align-items:center;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+}
+
+.list-item:hover{
+  transform: translateY(-2px);
+  box-shadow:0 12px 24px rgba(0,0,0,0.18);
+  background:#FFF1CC;
+}
+
+.amount{
+  font-weight:900;
+  transition: 0.2s;
+}
+
+.list-item:hover .amount{
+  color:#FFD66B;
+  text-shadow: 0 0 4px #FFD66B;
+}
+
+/* badges وتصنيفات */
+.cat-badge{
+  font-size:12px;
+  padding:6px 8px;
+  border-radius:10px;
+  background:#fff;
+  border:1px solid #f0e6d6;
+}
+
+.total{ font-weight:900; font-size:20px; }
+.muted{ color:var(--muted); font-size:13px; }
+.fun-text{ font-weight:800; color:#333; }
+
+/* controls */
+.controls{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+.chip{
+  background:#fff;
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid #f0e0c0;
+  cursor:pointer;
+  transition: 0.2s;
+}
+.chip:hover{ background:#FFD66B; color:#fff; }
+
+/* Mascot bounce */
+.bounce{ animation:bounce .9s ease; }
+@keyframes bounce{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+/* Chart canvas */
+canvas{ width:100%; max-width:100%; background:#fff; border-radius:10px; }
+
+/* footer */
+footer{
+  margin-top:16px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media (max-width:420px){
+  .app{ padding:12px; margin:8px auto; }
+  header{ flex-direction: column; align-items:flex-start; gap:8px; }
+  .row{ flex-direction:column; gap:8px; }
+  .buttons{ flex-wrap:wrap; gap:6px; }
+}

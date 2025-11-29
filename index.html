@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>مصرفها صح — سجل مصروفك</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" role="application" aria-label="تطبيق مصرفها صح">
+  <header>
+    <div class="mascot" id="mascot">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g>
+          <ellipse cx="50" cy="83" rx="26" ry="10" fill="#D9B08C"/>
+          <rect x="18" y="42" width="64" height="36" rx="8" fill="#fff"/>
+          <circle cx="50" cy="34" r="18" fill="#FFD9A8"/>
+          <path d="M35 36 q15 10 30 0" fill="#fff"/>
+          <circle cx="44" cy="33" r="2.5" fill="#000"/>
+          <circle cx="56" cy="33" r="2.5" fill="#000"/>
+          <rect x="40" y="26" width="20" height="6" rx="3" fill="#fff"/>
+          <path d="M34 22 q16 -10 32 0" stroke="#D1A04C" stroke-width="2" fill="none"/>
+        </g>
+      </svg>
+    </div>
+    <div style="flex:1">
+      <h1 class="fun-text">أهلا يا زعيم الصرف! 😂💸</h1>
+      <p class="sub">جاهز نحسب الفضايح المالية بتاعة النهارده؟ 😎</p>
+      <div class="buttons">
+        <button class="btn" id="btnAdd">يلا نسجّل مصروف 😂</button>
+        <button class="btn secondary" id="btnView">عرض المصاريف</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ADD EXPENSE CARD -->
+    <section id="addCard" class="card">
+      <label>أضف مصروف جديد</label>
+      <div class="intro">
+        <svg class="intro-icon" width="72" height="72" viewBox="0 0 100 100">
+          <g>
+            <circle cx="50" cy="46" r="16" fill="#FFD9A8"/>
+            <rect x="36" y="64" width="28" height="18" rx="6" fill="#fff"/>
+          </g>
+        </svg>
+        <div>
+          <div class="muted">عم المصرفاتي : احكيلي صرفت إيه؟</div>
+          <div class="muted small-text">ما تتكسفش… كلنا صرفنا على حاجات ملهاش لازمة 😅</div>
+        </div>
+      </div>
+
+      <div class="card inner-card">
+        <label for="expenseName">مصروف إيه؟</label>
+        <input id="expenseName" type="text" placeholder="أكلت إيه؟ اشتريت إيه؟ وديت فلوسك في إيه؟ 😂" />
+
+        <div class="row">
+          <div class="small">
+            <label for="amount">المبلغ (جنيه)</label>
+            <input id="amount" type="number" placeholder="كام طار منك؟ قول بصراحة… احنا أصحاب 🙄😂" min="0" />
+          </div>
+          <div class="small-select">
+            <label for="category">التصنيف</label>
+            <select id="category">
+              <option>أكل</option>
+              <option>مواصلات</option>
+              <option>كافيهات</option>
+              <option>تسالي</option>
+              <option>ملابس</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row align-center">
+          <div class="flex-1">
+            <label for="datePicker">التاريخ</label>
+            <input id="datePicker" type="date" />
+          </div>
+          <div class="btn-group">
+            <button class="btn" id="saveBtn">سجّل… وربنا يستر! 😂</button>
+            <button class="btn secondary" id="clearBtn">امسح الحقول</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPENSES LIST -->
+    <section id="listCard" class="card hidden">
+      <div class="list-header">
+        <div>
+          <div class="fun-text">نشرة أخبار الصرف اليومية 😎</div>
+          <div class="muted">دي آخر الفضايح المالية بتاعتك</div>
+        </div>
+        <div class="total" id="totalLabel">إجمالي: 0 ج.</div>
+      </div>
+
+      <div class="controls">
+        <div class="chip" id="filterAll">الكل</div>
+        <div class="chip" id="filterFood">أكل</div>
+        <div class="chip" id="filterTrans">مواصلات</div>
+        <div class="chip" id="filterCafe">كافيهات</div>
+        <div class="chip" id="filterSave">التوفير 🎯</div>
+      </div>
+
+      <div id="expensesList" aria-live="polite"></div>
+
+      <div class="row" style="margin-top:8px">
+        <button class="btn" id="btnExport">حفظ نسخة (Export)</button>
+        <button class="btn secondary" id="btnClearAll">امسح الكل… وانسى اللي حصل 😏😂</button>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="statsCard" class="card hidden">
+      <div class="list-header">
+        <div>
+          <div class="fun-text">تحليل الحالة الاقتصادية للمواطن المحترم 😂📊</div>
+          <div class="muted">شوف الصرف بتاعك وعمّ مصرفجي هيعلّق</div>
+        </div>
+        <div id="statVerdict" class="stat-verdict"></div>
+      </div>
+      <canvas id="chartCanvas"></canvas>
+      <div class="muted" id="perCat"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="muted">مصنوع بحب — عم مصرفجي موجود يساعدك 😂</div>
+    <div><small class="muted">made by: Azaz El Azazy</small></div>
+  </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
